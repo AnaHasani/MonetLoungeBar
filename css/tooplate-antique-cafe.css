@@ -280,7 +280,6 @@ textarea::-ms-input-placeholder { /* Microsoft Edge */
     align-items: center;
     text-align: center;
     margin-top: -25px;
-    border: 2px solid red;
     margin-left: 75px;
   }
 }
