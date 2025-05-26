@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu</title>
+  <style>
+    body {
+      background: #571825;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    .book {
+      width: 80%; /* Shrunk to 80% of container */
+      max-width: 350px; /* Smaller max */
+      height: auto;
+      aspect-ratio: 1260 / 2000;
+      position: relative;
+      perspective: 2000px;
+      margin-bottom: 20px;
+    }
+
+    .page {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: left;
+      transition: transform 1s ease;
+      backface-visibility: hidden;
+    }
+
+    .page img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .flipped {
+      transform: rotateY(-180deg);
+      z-index: 0 !important;
+    }
+
+    .controls {
+      text-align: center;
+      flex-wrap: wrap;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background-color: #802236;
+      color: #fff;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .controls button:hover {
+      background-color: #9e2942;
+    }
+
+    @media (max-width: 600px) {
+      .book {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .controls button {
+        width: 100px;
+        font-size: 14px;
+        margin: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="book" id="book">
+    <div class="page" id="page1" style="z-index: 11;"><img src="img/menu/1.jpeg" alt="Page 1"/></div>
+    <div class="page" id="page2" style="z-index: 10;"><img src="img/menu/2.jpeg" alt="Page 2"/></div>
+    <div class="page" id="page3" style="z-index: 9;"><img src="img/menu/3.jpeg" alt="Page 3"/></div>
+    <div class="page" id="page4" style="z-index: 8;"><img src="img/menu/4.jpeg" alt="Page 4"/></div>
+    <div class="page" id="page5" style="z-index: 7;"><img src="img/menu/5.jpeg" alt="Page 5"/></div>
+    <div class="page" id="page6" style="z-index: 6;"><img src="img/menu/6.jpeg" alt="Page 6"/></div>
+    <div class="page" id="page7" style="z-index: 5;"><img src="img/menu/7.jpeg" alt="Page 7"/></div>
+    <div class="page" id="page8" style="z-index: 4;"><img src="img/menu/8.jpeg" alt="Page 8"/></div>
+    <div class="page" id="page9" style="z-index: 3;"><img src="img/menu/9.jpeg" alt="Page 9"/></div>
+    <div class="page" id="page10" style="z-index: 2;"><img src="img/menu/10.jpeg" alt="Page 10"/></div>
+    <div class="page" id="page11" style="z-index: 1;"><img src="img/menu/11.jpeg" alt="Page 11"/></div>
+  </div>
+
+  <div class="controls">
+    <button onclick="prevPage()">⟵ Previous</button>
+    <button onclick="nextPage()">Next ⟶</button>
+  </div>
+
+  <script>
+    let currentPage = 0;
+    const totalPages = 11;
+    const pages = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(document.getElementById(`page${i}`));
+    }
+
+    function nextPage() {
+      if (currentPage < totalPages) {
+        pages[currentPage].classList.add("flipped");
+        currentPage++;
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        pages[currentPage].classList.remove("flipped");
+      }
+    }
+  </script>
+
+</body>
+</html>
